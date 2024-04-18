@@ -10,8 +10,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: reservation_purchase_database
-      MYSQL_USER: local_user
-      MYSQL_PASSWORD: local_password
+      MYSQL_USER: alpha_user
+      MYSQL_PASSWORD: alpha_password
     networks:
       - reservation_purchase
 
