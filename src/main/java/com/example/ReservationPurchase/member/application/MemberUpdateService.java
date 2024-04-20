@@ -1,5 +1,6 @@
 package com.example.ReservationPurchase.member.application;
 
+import com.example.ReservationPurchase.auth.application.port.RefreshRepository;
 import com.example.ReservationPurchase.member.application.port.MemberRepository;
 import com.example.ReservationPurchase.member.domain.Member;
 import com.example.ReservationPurchase.member.domain.MemberUpdate;
@@ -11,15 +12,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
+
 @Service
 public class MemberUpdateService {
 
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final RefreshRepository refreshRepository;
 
-    public MemberUpdateService(final MemberRepository memberRepository, final BCryptPasswordEncoder passwordEncoder) {
+
+    public MemberUpdateService(final MemberRepository memberRepository, final BCryptPasswordEncoder passwordEncoder, RefreshRepository refreshRepository) {
         this.memberRepository = memberRepository;
         this.passwordEncoder = passwordEncoder;
+        this.refreshRepository = refreshRepository;
     }
 
     @Transactional
@@ -47,6 +53,17 @@ public class MemberUpdateService {
         member.applyEncodedPassword(encodedPassword);
 
         memberRepository.save(member);
+
+        // 비밀번호 업데이트 시 모든 기기에서 로그아웃
+        // Id에 해당하는 refresh 토큰 확인 후 제거
+        String memberId = String.valueOf(member.getId());
+        Map<String, String> allDevice = refreshRepository.getAllFromHash(memberId);
+        for (String uuid : allDevice.keySet()) {
+            refreshRepository.delete(memberId + "-" + uuid);
+            refreshRepository.delete(uuid);
+            refreshRepository.removeFromHash(memberId, uuid);
+        }
+
     }
 
     private void checkAuthorized(Long targetId, Long principalId) {

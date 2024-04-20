@@ -9,9 +9,9 @@ import java.util.Collection;
 import java.util.Set;
 
     public class UserDetailsImpl implements UserDetails {
-        private final Long id;
-        private final String email;
-        private final String password;
+    private final Long id;
+    private final String email;
+    private final String password;
     private final String name;
     private Collection<? extends GrantedAuthority> authorities;
 

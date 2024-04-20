@@ -5,13 +5,10 @@ import com.example.ReservationPurchase.auth.domain.LogoutInfo;
 import com.example.ReservationPurchase.auth.domain.UserDetailsImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/logout")
+@RequestMapping("/auth/logout")
 public class LogoutApiController {
 
     private final LogoutService logoutService;
@@ -26,6 +23,15 @@ public class LogoutApiController {
             @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
         logoutService.logout(logoutInfo, userDetails.getEmail());
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/all-device")
+    public ResponseEntity<Void> logoutAll(
+            @RequestBody LogoutInfo logoutInfo,
+            @AuthenticationPrincipal UserDetailsImpl userDetails
+    ) {
+        logoutService.logoutAll(logoutInfo, userDetails.getEmail());
         return ResponseEntity.ok().build();
     }
 }

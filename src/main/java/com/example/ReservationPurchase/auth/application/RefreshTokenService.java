@@ -41,7 +41,7 @@ public class RefreshTokenService {
         // 3. AccessToken을 발급하여 기존 RefreshToken과 함께 응답한다.
         String accessToken = jwtTokenProvider.generateAccess(email, member.getName());
 
-        // 리프레쉬 기간이 얼마 안남으면 그냥 리프레쉬도 새로 발급해준다.(보류)
+        // Todo: 리프레쉬 기간이 얼마 안남으면 그냥 리프레쉬도 새로 발급해준다.
         return RefreshResponse.from(accessToken, refreshToken);
     }
 }
