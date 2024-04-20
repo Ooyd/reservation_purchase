@@ -20,14 +20,16 @@ public class MemberCreate {
     private String name;
     private String address;
     private String authenticNumber;
+    private String phone;
 
 
     @Builder
-    public MemberCreate(final String email, final String password, final String name, final String authenticNumber) {
+    public MemberCreate(final String email, final String password, final String name, final String authenticNumber,final String phone) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.authenticNumber = authenticNumber;
+        this.phone = phone;
     }
 
 

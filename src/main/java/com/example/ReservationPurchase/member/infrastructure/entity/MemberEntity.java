@@ -35,6 +35,9 @@ public class MemberEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "phone", nullable = false)
+    private String phone;
+
     @Column(name = "address", nullable = false)
     private String address;
 
@@ -56,6 +59,7 @@ public class MemberEntity {
         memberEntity.password = member.getPassword();
         memberEntity.name = member.getName();
         memberEntity.address = member.getAddress();
+        memberEntity.phone = member.getPhone();
         memberEntity.profileUrl = member.getProfileUrl();
         memberEntity.createdAt = member.getCreatedAt();
         memberEntity.updatedAt = member.getUpdatedAt();
@@ -68,6 +72,7 @@ public class MemberEntity {
                 .password(password)
                 .name(name)
                 .address(address)
+                .phone(phone)
                 .profileUrl(profileUrl)
                 .createdAt(createdAt)
                 .updatedAt(updatedAt)

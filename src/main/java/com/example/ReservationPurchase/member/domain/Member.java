@@ -12,18 +12,20 @@ public class Member {
     private String password;
     private String name;
     private String address;
+    private String phone;
     private String profileUrl;
     protected LocalDateTime createdAt;
     protected LocalDateTime updatedAt;
 
     @Builder
-    public Member(final Long id, final String email, final String password, final String name, final String address,
+    public Member(final Long id, final String email, final String password, final String name, final String address, final String phone,
                   final String profileUrl, final LocalDateTime createdAt, final LocalDateTime updatedAt) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.address = address;
+        this.phone = phone;
         this.profileUrl = profileUrl;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -35,6 +37,7 @@ public class Member {
                 .password(memberCreate.getPassword())
                 .name(memberCreate.getName())
                 .address(memberCreate.getAddress())
+                .phone(memberCreate.getPhone())
                 .build();
     }
 
@@ -63,5 +66,7 @@ public class Member {
 
     public void update(final MemberUpdate memberUpdate) {
         this.name = memberUpdate.getName();
+        this.address = memberUpdate.getAddress();
+        this.phone = memberUpdate.getPhone();
     }
 }
