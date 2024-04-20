@@ -8,6 +8,7 @@ import com.example.ReservationPurchase.member.domain.Member;
 import com.example.ReservationPurchase.member.exception.MemberErrorCode;
 import com.example.ReservationPurchase.member.exception.MemberException;
 import com.example.ReservationPurchase.common.util.CryptoUtil;
+import com.example.ReservationPurchase.member.presentation.response.MemberJoinResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

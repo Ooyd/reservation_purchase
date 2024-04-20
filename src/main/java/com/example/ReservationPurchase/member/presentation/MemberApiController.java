@@ -9,6 +9,7 @@ import com.example.ReservationPurchase.member.domain.Member;
 import com.example.ReservationPurchase.member.domain.MemberCreate;
 import com.example.ReservationPurchase.member.domain.MemberUpdate;
 import com.example.ReservationPurchase.member.domain.PasswordUpdate;
+import com.example.ReservationPurchase.member.presentation.response.MemberJoinResponse;
 import com.example.ReservationPurchase.member.presentation.response.MemberResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

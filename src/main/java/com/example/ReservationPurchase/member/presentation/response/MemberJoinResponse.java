@@ -20,4 +20,11 @@ public class MemberJoinResponse {
                 saved.getEmail()
         );
     }
+
+    public static MemberJoinResponse from(final Member saved, String decodeString) {
+        return new MemberJoinResponse(
+                saved.getId(),
+                decodeString
+        );
+    }
 }
