@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface RefreshRepository extends JpaRepository<RefreshTokenEntity, Long> {
+public interface RefreshJapRepository extends JpaRepository<RefreshTokenEntity, Long> {
     Optional<RefreshTokenEntity> findByValue(String value);
 
     void deleteByValue(String value);
