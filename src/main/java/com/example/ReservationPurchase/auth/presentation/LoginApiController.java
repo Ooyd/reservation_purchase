@@ -2,6 +2,7 @@ package com.example.ReservationPurchase.auth.presentation;
 
 import com.example.ReservationPurchase.auth.application.LoginService;
 import com.example.ReservationPurchase.auth.domain.LoginInfo;
+import com.example.ReservationPurchase.auth.presentation.response.LoginResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,8 +20,8 @@ public class LoginApiController {
     }
 
     @PostMapping
-    public ResponseEntity<String> login(@RequestBody LoginInfo loginInfo) throws Exception {
-        String token = loginService.jwtLogin(loginInfo);
-        return ResponseEntity.ok(token);
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginInfo loginInfo) throws Exception {
+        LoginResponse loginResponse = loginService.login(loginInfo);
+        return ResponseEntity.ok(loginResponse);
     }
 }
