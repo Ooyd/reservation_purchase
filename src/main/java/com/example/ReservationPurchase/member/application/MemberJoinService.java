@@ -5,7 +5,6 @@ import com.example.ReservationPurchase.auth.application.port.RedisMailRepository
 import com.example.ReservationPurchase.member.application.port.MemberRepository;
 import com.example.ReservationPurchase.member.domain.MemberCreate;
 import com.example.ReservationPurchase.member.domain.Member;
-import com.example.ReservationPurchase.member.domain.response.MemberJoinResponse;
 import com.example.ReservationPurchase.member.exception.MemberErrorCode;
 import com.example.ReservationPurchase.member.exception.MemberException;
 import com.example.ReservationPurchase.common.util.CryptoUtil;

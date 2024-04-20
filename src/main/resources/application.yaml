@@ -18,8 +18,10 @@ logging:
 
 jwt:
   secret-key: rkGU45258GGhiolLO2465TFY5345kGU45258GGhiolLO2465TFY5342
-  accessToken:
-    expired-time-ms : 3600000
+  expired-time:
+    token:
+      access: 108000000
+      refresh: 3600000
 
 crypto:
   key: "12345678901234567890123456789012"
