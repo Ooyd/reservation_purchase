@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/reservation_purchase_database
-    username: alpha_user
-    password: alpha_password
+    username: root
+    password: 1234
   jpa:
     properties:
       hibernate:
@@ -14,3 +14,21 @@ logging:
     org:
       springframework:
         web: DEBUG
+
+
+jwt:
+  secret-key: rkGU45258GGhiolLO2465TFY5345kGU45258GGhiolLO2465TFY5342
+  accessToken:
+    expired-time-ms : 3600000
+
+crypto:
+  key: "12345678901234567890123456789012"
+
+file:
+  local:
+    upload:
+      path: C:\Users\qk141\dev\2024\01-reservation_purchase\reservation_purchase\db\profile
+
+email:
+  id: "qk1413@naver.com"
+  pw: "chang0417"
