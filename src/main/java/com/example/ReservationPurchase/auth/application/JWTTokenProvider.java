@@ -19,10 +19,13 @@ public class JWTTokenProvider {
     @Value("${jwt.secret-key}")
     private String secretKey;
 
-    @Value("${jwt.accessToken.expired-time-ms}")
+    @Value("${jwt.expired-time.token.access}")
     private Long accessTokenExpiredTimeMs;
 
-    public String generate(String email, String userName){
+    @Value("${jwt.expired-time.token.refresh}")
+    private Long refreshTokenExpiredTimeMs;
+
+    public String generate(String email, String userName, Long expiredTime) {
         Claims claims = Jwts.claims();
         claims.put("userName", userName);
         claims.put("email", email);
@@ -54,6 +57,20 @@ public class JWTTokenProvider {
     public boolean isExpired(String token) {
         Date expiredDate = extractClaims(token).getExpiration();
         return expiredDate.before(new Date());
+    }
+
+    public long getExpiredTime(String token) {
+        Date expiredDate = extractClaims(token).getExpiration();
+        Date currentDate = new Date();
+        return expiredDate.getTime() - currentDate.getTime();
+    }
+
+    public String generateAccess(String email, String userName) {
+        return generate(email, userName, accessTokenExpiredTimeMs);
+    }
+
+    public String generateRefresh(String email, String userName) {
+        return generate(email, userName, refreshTokenExpiredTimeMs);
     }
 
 

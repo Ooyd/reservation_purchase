@@ -49,8 +49,8 @@ public class MailService {
             e.printStackTrace();
         }
 
-        // 약 3분동안 인증정보를 저장해놓는다.
-        redisMailRepository.setDataExpire(toEmail, randomNumber, 180L);
+        // 약 5분동안 인증정보를 저장해놓는다.
+        redisMailRepository.setDataExpire(toEmail, randomNumber, 300L);
     }
 
     /*
