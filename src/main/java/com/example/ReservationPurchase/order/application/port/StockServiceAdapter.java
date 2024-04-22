@@ -1,0 +1,13 @@
+package com.example.ReservationPurchase.order.application.port;
+
+
+import com.example.ReservationPurchase.order.domain.OrderStock;
+
+public interface StockServiceAdapter {
+
+    // 3. 재고수량을 +x 만큼해라
+    void addStock(final Long productId, final OrderStock stockCount);
+
+    // 4. 재고수량을 -x 만큼해라
+    void subtract(final Long productId, final OrderStock stockCount);
+}
