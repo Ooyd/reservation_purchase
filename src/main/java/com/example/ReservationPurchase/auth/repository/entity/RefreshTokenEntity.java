@@ -17,6 +17,7 @@ public class RefreshTokenEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @Column(name = "member_id", nullable = false)
     private Long memberId;
 
