@@ -31,7 +31,7 @@ public class OrderEntity {
     private ProductType productType;
 
     @Column(name = "quantity", nullable = false)
-    private Long quantity;
+    private Integer quantity;
 
     @Column(name = "member_id", nullable = false)
     private Long memberId;

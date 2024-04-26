@@ -8,15 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CartUpdate {
 
-    private String memberId;
-
     private String productId;
 
     private int quantity;
 
     @Builder
-    public CartUpdate(String memberId, String productId, int quantity) {
-        this.memberId = memberId;
+    public CartUpdate(String productId, int quantity) {
         this.productId = productId;
         this.quantity = quantity;
     }

@@ -9,4 +9,8 @@ public class CartException extends GlobalException {
     public static class CartOverQuantityException extends CartException{
         public CartOverQuantityException(final CartErrorCode errorCode) { super((errorCode));}
     }
+
+    public static class CartNotFoundException extends CartException{
+        public CartNotFoundException(final CartErrorCode errorCode) { super((errorCode));}
+    }
 }

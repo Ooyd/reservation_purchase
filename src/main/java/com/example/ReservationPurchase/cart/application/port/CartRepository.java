@@ -13,5 +13,7 @@ public interface CartRepository {
 
     void delete(Long id);
 
-//    Cart findById(Long id);
+    Optional<Cart> findById(Long id);
+
+    void update(Long cartId, int quantity);
 }

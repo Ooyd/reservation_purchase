@@ -3,14 +3,16 @@ package com.example.ReservationPurchase.cart.domain;
 import com.example.ReservationPurchase.product.domain.Product;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 public class Cart {
     private Long id;
     private Long memberId;
-    private int quantity;
+    private Integer quantity;
     private Product product;
     protected LocalDateTime createdAt;
     protected LocalDateTime updatedAt;

@@ -30,11 +30,11 @@ public class CartJpaRepositoryImpl implements CartRepository {
                 .collect(Collectors.toList());
     }
 
-//    @Override
-//    public Optional<Cart> findById(Long id) {
-//        return cartJpaRepository.findById(id)
-//                .map(CartEntity::toModel);
-//    }
+    @Override
+    public Optional<Cart> findById(Long id) {
+        return cartJpaRepository.findById(id).map(CartEntity::toModel);
+    }
+
 
     @Override
     public void delete(Long id) {

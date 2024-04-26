@@ -49,13 +49,11 @@ public class ProductService {
                 .map(productRepository::save)
                 .orElseThrow(() -> new GlobalException(HttpStatus.NOT_FOUND, "[ERROR] reservation product not found"));
 
-        // 재고 수량 정보 변경(재고서비스에 feign 요청)
         ProductStock productStock = ProductStock.builder()
                 .productId(productId)
                 .stockCount(productUpdate.getStockCount())
                 .build();
         stockServiceAdapter.updateStockCount(productId, productStock);
-        log.info("feign응답성공 : 재고서비스의 재고업데이트 요청");
     }
 
     private Product saveReservationTime(Product product, ProductCreate productCreate) {
@@ -65,13 +63,11 @@ public class ProductService {
     }
 
     private Product saveProductStock(Product product, ProductCreate productCreate) {
-        // 재고 생성 요청(재고서비스에 feign 요청)
         ProductStock productStock = ProductStock.builder()
                 .productId(product.getId())
                 .stockCount(productCreate.getStockCount())
                 .build();
         stockServiceAdapter.createStockCount(product.getId(), productStock);
-        log.info("feign응답성공 : 재고서비스의 재고생성 요청");
         return product;
     }
 }

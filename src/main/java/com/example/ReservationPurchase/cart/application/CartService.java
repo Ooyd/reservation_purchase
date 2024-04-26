@@ -4,6 +4,7 @@ import com.example.ReservationPurchase.auth.domain.UserDetailsImpl;
 import com.example.ReservationPurchase.cart.application.port.CartRepository;
 import com.example.ReservationPurchase.cart.domain.Cart;
 import com.example.ReservationPurchase.cart.domain.CartCreate;
+import com.example.ReservationPurchase.cart.domain.CartUpdate;
 import com.example.ReservationPurchase.cart.exception.CartErrorCode;
 import com.example.ReservationPurchase.cart.exception.CartException;
 import com.example.ReservationPurchase.member.application.port.MemberRepository;
@@ -11,9 +12,11 @@ import com.example.ReservationPurchase.member.domain.Member;
 import com.example.ReservationPurchase.member.exception.MemberErrorCode;
 import com.example.ReservationPurchase.member.exception.MemberException;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -44,14 +47,11 @@ public class CartService {
         return cartRepository.save(newCart);
     }
 
-//    @Transactional
-//    public void delete(Long id,UserDetailsImpl userDetails) {
-//        Member member = findExistMember(userDetails.getId());
-//        Cart cart = cartRepository.findById(id)
-//
-//
-//        cartRepository.delete(id);
-//    }
+    @Transactional
+    public void delete(Long id,UserDetailsImpl userDetails) {
+        findExistMember(userDetails.getId());
+        cartRepository.delete(id);
+    }
 
     private Member findExistMember(Long id) {
         return memberRepository.findById(id).orElseThrow(() ->
@@ -59,4 +59,23 @@ public class CartService {
     }
 
 
+    @Transactional
+    public Cart update(Long cartId, CartUpdate cartUpdate, UserDetails userDetails) {
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> new CartException.CartNotFoundException(CartErrorCode.NOT_FOUND_CART));
+
+        if (!cart.getMemberId().equals(((UserDetailsImpl)userDetails).getId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access denied");
+        }
+
+        cart.setQuantity(cartUpdate.getQuantity());
+        cart.setUpdatedAt(LocalDateTime.now());
+        return cartRepository.save(cart);
+    }
+
+    private Cart validateCart(Long cartId) {
+        return cartRepository.findById(cartId).orElseThrow(() ->
+                new CartException.CartNotFoundException(CartErrorCode.NOT_FOUND_CART));
+
+    }
 }
