@@ -26,8 +26,6 @@ import java.util.Set;
     }
 
     public static UserDetailsImpl from(Member member) {
-        // 추후 역할권한이 필요할 때 추가 작성
-        // Set<MemberRole> roleTypes = Set.of(member.getMemberRole());
 
         return UserDetailsImpl.builder()
                 .id(member.getId())
