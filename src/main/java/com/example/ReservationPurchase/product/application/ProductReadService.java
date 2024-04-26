@@ -18,7 +18,7 @@ public class ProductReadService {
 
     public Product find(final Long productId) {
         return productRepository.findById(productId).orElseThrow(() ->
-                new GlobalException(HttpStatus.NOT_FOUND, "[ERROR] reservation product not found"));
+                new GlobalException(HttpStatus.NOT_FOUND, "[ERROR] product not found"));
     }
 
     public Page<Product> findAll() {

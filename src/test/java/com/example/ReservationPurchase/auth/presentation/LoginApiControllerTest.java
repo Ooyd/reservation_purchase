@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-@DisplayName("Auth 도메인 API 테스트")
+@DisplayName("통하테스트 [인증/인가]")
 class LoginApiControllerTest {
 
     @Autowired
@@ -32,16 +32,16 @@ class LoginApiControllerTest {
 
     private Member setMember() {
         Member member = Member.builder()
-                .email("user1@naver.com")
+                .email("test@naver.com")
                 .password(passwordEncoder.encode("12345678"))
-                .name("홍길동")
+                .name("김이박")
                 .build();
         return memberRepository.save(member);
     }
 
     @DisplayName("로그인 테스트 : 성공")
     @Test
-    void 로그인_요청() throws Exception {
+    void 로그인요청() throws Exception {
         // given
         Member saved = setMember();
         String json = """
